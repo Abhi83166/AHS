@@ -1,0 +1,388 @@
+/* Core theme styles for HomeHub - premium light UI */
+:root {
+  --bg: #fafbfc;
+  --bg-secondary: #f5f7fa;
+  --panel: #ffffff;
+  --panel-2: #f8f9fb;
+  --muted: #6b7280;
+  --text: #1f2937;
+  --text-secondary: #374151;
+  --primary: #007aff; /* iOS blue */
+  --primary-2: #5ac8fa;
+  --accent: #34c759;  /* iOS green */
+  --success: #34c759;
+  --warning: #ff9f0a;
+  --danger: #ff3b30;
+  --card-border: rgba(0,0,0,0.08);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+}
+
+* { box-sizing: border-box; }
+html, body { 
+  margin: 0;
+  padding: 0;
+}
+body { 
+  background: linear-gradient(135deg, #fafbfc 0%, #f0f4f8 100%); 
+  color: var(--text); 
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/***** Layout *****/
+.app-shell { 
+  min-height: 100vh;
+}
+.topbar { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  padding: 0 20px; 
+  height: 64px;
+  border-bottom: 1px solid var(--card-border); 
+  background: rgba(255,255,255,0.95); 
+  backdrop-filter: blur(20px) saturate(180%); 
+  position: sticky; 
+  top: 0; 
+  z-index: 50;
+  box-shadow: var(--shadow-sm);
+}
+.brand { 
+  display: flex; 
+  align-items: center; 
+  gap: 12px; 
+  font-weight: 600; 
+  font-size: 17px;
+  letter-spacing: -0.4px;
+  color: var(--text);
+}
+.brand .logo { 
+  width: 32px; 
+  height: 32px; 
+  border-radius: 8px; 
+  background: linear-gradient(135deg, var(--primary), var(--primary-2)); 
+  box-shadow: 0 4px 12px rgba(0,122,255,0.3);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+.nav-actions { display: flex; align-items: center; gap: 10px; }
+.icon-btn { 
+  border: 1px solid var(--card-border); 
+  background: var(--panel); 
+  color: var(--text-secondary); 
+  border-radius: 12px; 
+  padding: 8px 16px; 
+  display: inline-flex; 
+  gap: 8px; 
+  align-items: center; 
+  cursor: pointer; 
+  transition: all 0.2s ease;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.2px;
+  box-shadow: var(--shadow-sm);
+}
+.icon-btn:hover { 
+  color: var(--primary); 
+  border-color: var(--primary); 
+  background: rgba(0,122,255,0.04);
+  transform: translateY(-1px); 
+  box-shadow: var(--shadow-md);
+}
+
+.app-body { 
+  display: flex;
+}
+.sidebar { 
+  width: 260px;
+  border-right: 1px solid var(--card-border); 
+  background: var(--panel); 
+  padding: 20px 16px;
+  min-height: calc(100vh - 64px);
+}
+.nav-section { margin-top: 8px; }
+.nav-title { 
+  color: var(--muted); 
+  font-size: 13px; 
+  font-weight: 600;
+  text-transform: uppercase; 
+  letter-spacing: 0.5px; 
+  padding: 16px 12px 8px 12px;
+  margin-top: 8px;
+}
+.nav-link { 
+  display: flex; 
+  align-items: center; 
+  gap: 12px; 
+  padding: 12px 16px; 
+  border-radius: 12px; 
+  color: var(--text-secondary); 
+  text-decoration: none; 
+  border: 1px solid transparent; 
+  transition: all 0.2s ease;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: -0.2px;
+  margin-bottom: 2px;
+}
+.nav-link:hover { 
+  background: var(--bg-secondary); 
+  border-color: var(--card-border);
+  color: var(--text);
+  transform: translateX(4px);
+}
+.nav-link.active { 
+  background: linear-gradient(135deg, rgba(0,122,255,0.1), rgba(90,200,250,0.06)); 
+  color: var(--primary); 
+  border-color: rgba(0,122,255,0.2); 
+  font-weight: 600;
+  box-shadow: inset 0 0 0 1px rgba(0,122,255,0.1), var(--shadow-sm);
+}
+
+.content { 
+  flex: 1;
+  padding: 24px 20px; 
+  background: var(--bg);
+}
+.grid { 
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+}
+.grid.cols-4 > * { 
+  flex: 1;
+  min-width: 250px;
+}
+.grid.cols-3 > * { 
+  flex: 1;
+  min-width: 280px;
+}
+.grid.cols-2 > * { 
+  flex: 1;
+  min-width: 300px;
+}
+
+/* Simple responsive design */
+@media (max-width: 1200px) { 
+  .sidebar { display: none; }
+  .topbar { padding: 0 16px; }
+  .topbar .nav-actions { gap: 8px; }
+  .icon-btn { padding: 8px 12px; font-size: 13px; }
+}
+
+@media (max-width: 768px) { 
+  .grid.cols-4 > *, .grid.cols-3 > *, .grid.cols-2 > * {
+    min-width: 100%;
+    flex: none;
+  }
+  .content { padding: 16px 12px; }
+  .topbar { padding: 0 12px; height: 56px; }
+  .brand { font-size: 16px; }
+  .brand .logo { width: 28px; height: 28px; }
+  .topbar .nav-actions { overflow-x: auto; }
+  .icon-btn { white-space: nowrap; min-width: fit-content; }
+}
+
+/***** Cards *****/
+.card { 
+  background: var(--panel); 
+  border: 1px solid var(--card-border); 
+  border-radius: 16px; 
+  padding: 20px; 
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+.card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.card-title { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+.badge { 
+  font-size: 12px; 
+  font-weight: 500;
+  border-radius: 12px; 
+  padding: 4px 10px; 
+  border: 1px solid var(--card-border); 
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  letter-spacing: -0.1px;
+}
+
+.tile { 
+  display: flex;
+  align-items: center; 
+  gap: 16px; 
+  padding: 20px; 
+  border-radius: 16px; 
+  border: 1px solid var(--card-border); 
+  background: var(--panel); 
+  transition: all 0.2s ease; 
+  text-decoration: none; 
+  color: inherit;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  min-height: 80px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.tile:hover { 
+  transform: translateY(-3px); 
+  border-color: var(--primary); 
+  box-shadow: var(--shadow-md);
+  background: rgba(0,122,255,0.02);
+}
+.metric { 
+  font-size: 24px; 
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.5px;
+  font-variant-numeric: tabular-nums;
+}
+.sub { 
+  color: var(--muted); 
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.1px;
+}
+
+/***** Status colors *****/
+.ok { color: var(--success); }
+.warn { color: var(--warning); }
+.err { color: var(--danger); }
+.accent { color: var(--accent); }
+
+/***** Widgets *****/
+.spark { height: 28px; width: 100px; }
+.kpi { 
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end; 
+  gap: 12px;
+  padding: 4px 0;
+  flex: 1;
+}
+
+/***** Utilities *****/
+.row { 
+  display: flex; 
+  gap: 16px; 
+  align-items: center;
+  margin: 8px 0;
+}
+.shadow-in { 
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+}
+.hr { 
+  height: 1px; 
+  background: var(--card-border); 
+  margin: 16px 0;
+  border-radius: 1px;
+}
+
+.footer { 
+  color: var(--muted); 
+  font-size: 13px; 
+  font-weight: 500;
+  text-align: center; 
+  padding: 24px 0; 
+  opacity: 0.7;
+  letter-spacing: -0.1px;
+}
+
+/* Touch-friendly enhancements */
+@media (hover: none) and (pointer: coarse) {
+  .tile, .nav-link, .icon-btn {
+    min-height: 44px;
+  }
+  
+  .tile {
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  .nav-link {
+    padding: 16px;
+    margin-bottom: 4px;
+  }
+  
+  .icon-btn {
+    padding: 12px 16px;
+  }
+}
+
+/* Premium visual enhancements */
+.card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.app-shell {
+  background: var(--bg);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus states for accessibility */
+.nav-link:focus,
+.icon-btn:focus,
+.tile:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Loading states */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.loading {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Status indicator improvements */
+.ok { color: var(--success); font-weight: 600; }
+.warn { color: var(--warning); font-weight: 600; }
+.err { color: var(--danger); font-weight: 600; }
+.accent { color: var(--primary); font-weight: 600; }\n\n/* Chart and canvas stability */\ncanvas {\n  max-width: 100%;\n  height: auto !important;\n  display: block;\n}\n\n.card canvas {\n  width: 100% !important;\n  height: 160px !important;\n  max-height: 160px;\n  flex-shrink: 0;\n}
+
+/* Simple metric styling */
+.metric {
+  font-size: 24px; 
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.badge {
+  font-size: 12px; 
+  font-weight: 500;
+  border-radius: 12px; 
+  padding: 4px 10px; 
+  border: 1px solid var(--card-border); 
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  letter-spacing: -0.1px;
+}
+
+/* Prevent chart stretching */
+canvas {
+  max-width: 100%;
+  height: auto !important;
+  display: block;
+}
+
+.card canvas {
+  width: 100% !important;
+  height: 160px !important;
+  max-height: 160px !important;
+  flex-shrink: 0;
+}

@@ -1,0 +1,17 @@
+{
+  "demo": true,
+  "apiBaseUrl": "",
+  "modules": {
+    "water": true,
+    "air": true,
+    "energy": true,
+    "security": true,
+    "doors": true,
+    "presence": true,
+    "weather": true,
+    "garden": true,
+    "safety": true,
+    "leaks": true,
+    "automations": true
+  }
+}

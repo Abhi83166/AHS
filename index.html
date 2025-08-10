@@ -1,570 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaGuardian Pro | Advanced Water Management</title>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chart.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'sans': ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: {
-                            50: '#e3f2fd',
-                            100: '#bbdefb',
-                            200: '#90caf9',
-                            300: '#64b5f6',
-                            400: '#42a5f5',
-                            500: '#2196f3', // Main primary
-                            600: '#1e88e5',
-                            700: '#1976d2',
-                            800: '#1565c0',
-                            900: '#0d47a1',
-                        },
-                        secondary: {
-                            50: '#e8f5e9',
-                            100: '#c8e6c9',
-                            200: '#a5d6a7',
-                            300: '#81c784',
-                            400: '#66bb6a',
-                            500: '#4caf50', // Main secondary (green)
-                            600: '#43a047',
-                            700: '#388e3c',
-                            800: '#2e7d32',
-                            900: '#1b5e20',
-                        },
-                        accent: {
-                            50: '#ffebee',
-                            100: '#ffcdd2',
-                            200: '#ef9a9a',
-                            300: '#e57373',
-                            400: '#ef5350',
-                            500: '#f44336', // Main accent (red)
-                            600: '#e53935',
-                            700: '#d32f2f',
-                            800: '#c62828',
-                            900: '#b71c1c',
-                        },
-                        darkbg: '#0f172a', // Dark background
-                        cardbg: '#1e293b', // Card background
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: #f1f5f9; /* Light text */
-            font-family: 'Inter', sans-serif;
-        }
-        .card-gradient {
-            background: linear-gradient(145deg, #1e293b, #0f172a);
-            border: 1px solid #334155;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card-gradient:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 15px 10px -6px rgba(0, 0, 0, 0.5);
-        }
-        .water-container {
-            background: rgba(15, 23, 42, 0.7); /* darkbg with opacity */
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #334155;
-        }
-        .tank-outline {
-            border: 2px solid #94a3b8; /* slate-400 */
-            border-radius: 8px;
-        }
-        .water {
-            background: linear-gradient(to top, #2196f3, #64b5f6); /* primary-500 to primary-300 */
-            border-radius: 0 0 6px 6px;
-            box-shadow: inset 0 4px 10px rgba(33, 150, 243, 0.4);
-        }
-        .motor-icon-on {
-            color: #4caf50; /* secondary-500 */
-            text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
-            animation: spin 2s linear infinite;
-        }
-        .motor-icon-off {
-            color: #94a3b8; /* slate-400 */
-            opacity: 0.7;
-        }
-        .status-dot {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            margin-right: 8px;
-        }
-        .status-normal { background-color: #4caf50; box-shadow: 0 0 6px #4caf50; }
-        .status-nodata { background-color: #94a3b8; }
-        .status-emergency { background-color: #f44336; box-shadow: 0 0 8px #f44336; }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        @keyframes pulseWarning {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.05); opacity: 0.9; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        .warning-pulse {
-            animation: pulseWarning 2s infinite;
-        }
-        .chart-container {
-            position: relative;
-            height: 250px; /* Adjusted height for charts */
-            width: 100%;
-        }
-        .skeleton {
-            background: linear-gradient(90deg, #1e293b, #334155, #1e293b);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-            border-radius: 0.5rem;
-        }
-        @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <title>HomeHub · Arunoday Home Systems</title>
+  <meta name="description" content="Premium smart home dashboard with local-first privacy">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&family=SF+Pro+Text:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/chart.js">
 </head>
-<body class="min-h-screen">
-    <div class="container mx-auto px-4 py-8 max-w-6xl">
-        <!-- Header -->
-        <header class="text-center mb-10">
-            <h1 class="text-4xl md:text-5xl font-bold text-primary-400 flex items-center justify-center">
-                <i class="fas fa-tint mr-3 text-primary-300"></i> AquaGuardian Pro
-            </h1>
-            <p class="text-slate-400 mt-2 text-lg">Advanced Water Tank Management System</p>
-        </header>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand"><div class="logo"></div> <span>HomeHub</span></div>
+      <div class="nav-actions">
+        <a class="icon-btn" href="#/dashboard">Dashboard</a>
+        <a class="icon-btn" href="#/water">Water</a>
+        <a class="icon-btn" href="#/air">Air</a>
+        <a class="icon-btn" href="#/energy">Energy</a>
+        <a class="icon-btn" href="#/security">Security</a>
+        <a class="icon-btn" href="#/automations">Automations</a>
+        <a class="icon-btn" href="#/settings">Settings</a>
+      </div>
+    </header>
 
-        <!-- Dashboard Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Water Level Card -->
-            <div class="card-gradient rounded-2xl p-6">
-                <div class="flex items-center mb-6">
-                    <i class="fas fa-water text-primary-400 text-2xl mr-3"></i>
-                    <h2 class="text-2xl font-semibold text-slate-200">Water Level</h2>
-                </div>
-
-                <!-- Water Visualization -->
-                <div class="water-container w-full h-64 relative mb-6">
-                    <div class="tank-outline absolute top-4 left-1/2 transform -translate-x-1/2 w-40 h-56"></div>
-                    <div class="water absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[156px]" id="water-level">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-3xl font-bold text-white" id="water-percentage">--%</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- System Info -->
-                <div class="grid grid-cols-2 gap-4 mb-6">
-                    <div class="bg-slate-800/50 p-4 rounded-lg text-center">
-                        <div class="text-slate-400 text-sm">Current Depth</div>
-                        <div class="text-xl font-bold mt-1" id="current-depth">-- cm</div>
-                    </div>
-                    <div class="bg-slate-800/50 p-4 rounded-lg text-center">
-                        <div class="text-slate-400 text-sm">System Status</div>
-                        <div class="mt-1">
-                            <span class="status-dot status-nodata" id="system-status"></span>
-                            <span class="font-semibold" id="status-text">Loading...</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- History Chart -->
-                <div class="mt-6">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-history text-slate-400 mr-2"></i>
-                        <h3 class="text-lg font-medium text-slate-300">Usage History (7 Days)</h3>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="historyChart"></canvas>
-                        <!-- Skeleton Loader for Chart -->
-                        <div id="historyChartSkeleton" class="skeleton absolute inset-0"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Motor & Expenditure Card -->
-            <div class="card-gradient rounded-2xl p-6">
-                <!-- Motor Status -->
-                <div class="flex items-center mb-6">
-                    <i class="fas fa-cog text-primary-400 text-2xl mr-3"></i>
-                    <h2 class="text-2xl font-semibold text-slate-200">Motor Control</h2>
-                </div>
-                <div class="text-center py-6">
-                    <div class="text-7xl mb-4">
-                        <i class="fas fa-fan motor-icon-off" id="motor-icon"></i>
-                    </div>
-                    <div class="text-2xl font-bold mb-2" id="motor-text">LOADING...</div>
-                    <p class="text-slate-400">Mode: <span class="font-medium" id="mode-text">--</span></p>
-                    <p class="text-slate-400 mt-1">Last Update: <span id="last-update">--:--:--</span></p>
-                </div>
-
-                <!-- Expenditure Chart -->
-                <div class="mt-8">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-rupee-sign text-slate-400 mr-2"></i>
-                        <h3 class="text-lg font-medium text-slate-300">Power Expenditure</h3>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="expenditureChart"></canvas>
-                        <!-- Skeleton Loader for Chart -->
-                        <div id="expenditureChartSkeleton" class="skeleton absolute inset-0"></div>
-                    </div>
-                </div>
-            </div>
+    <div class="app-body">
+      <aside class="sidebar">
+        <div class="nav-section">
+          <div class="nav-title">Overview</div>
+          <a class="nav-link" href="#/dashboard">Dashboard</a>
         </div>
-    </div>
-
-    <!-- Warning Overlay -->
-    <div class="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 opacity-0 pointer-events-none transition-opacity duration-500" id="warning-overlay">
-        <div class="bg-gradient-to-br from-accent-700 to-accent-900 rounded-2xl p-8 max-w-md w-full text-center warning-pulse shadow-2xl border border-accent-500/30">
-            <div class="text-6xl text-white mb-4">
-                <i class="fas fa-exclamation-triangle"></i>
-            </div>
-            <h2 class="text-3xl font-bold text-white mb-4">EMERGENCY!</h2>
-            <p class="text-slate-200 mb-6 text-lg" id="warning-message">
-                System is in EMERGENCY mode!<br>
-                All operations are disabled.<br>
-                Please check the system locally.
-            </p>
-            <button class="bg-white text-accent-700 hover:bg-slate-100 font-bold py-3 px-6 rounded-full transition duration-300 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50" onclick="document.getElementById('warning-overlay').classList.remove('active');">
-                <i class="fas fa-times mr-2"></i> ACKNOWLEDGE
-            </button>
+        <div class="nav-section">
+          <div class="nav-title">Modules</div>
+          <a class="nav-link" href="#/water">Water Tank</a>
+          <a class="nav-link" href="#/air">Air Quality</a>
+          <a class="nav-link" href="#/energy">Power & Energy</a>
+          <a class="nav-link" href="#/security">Security & Cameras</a>
+          <a class="nav-link" href="#/doors">Doors & Windows</a>
+          <a class="nav-link" href="#/presence">Presence</a>
+          <a class="nav-link" href="#/weather">Weather</a>
+          <a class="nav-link" href="#/garden">Garden & Irrigation</a>
+          <a class="nav-link" href="#/safety">Gas & Smoke</a>
+          <a class="nav-link" href="#/leaks">Water Leaks</a>
+          <a class="nav-link" href="#/automations">Scenes & Automations</a>
         </div>
+        <div class="nav-section">
+          <div class="nav-title">System</div>
+          <a class="nav-link" href="#/settings">Settings</a>
+        </div>
+      </aside>
+      <main class="content">
+        <div id="view" class="grid cols-4"></div>
+        <div class="footer">Local-first · Private · Zero cloud compute</div>
+      </main>
     </div>
+  </div>
 
-    <script>
-        // --- YOUR THINGSPEAK DETAILS ---
-        const TS_CHANNEL_1_ID = "3030472"; // AquaGuardian Live Data Channel ID
-        const TS_CHANNEL_1_READ_KEY = "T6KB9P778Q2IY41Z"; // Read Key for Live Data
-        const TS_CHANNEL_2_ID = "3030503"; // AquaGuardian History Channel ID
-        const TS_CHANNEL_2_READ_KEY = "6T0VHUQ8W10IP8H4"; // Read Key for History
-        const POWER_RATE_RUPEES_PER_KWH = 7; // Power rate in Rupees per kWh
-
-        // Chart instances
-        let historyChart = null;
-        let expenditureChart = null;
-
-        // --- CHART INITIALIZATION ---
-        function initCharts() {
-            const historyCtx = document.getElementById('historyChart').getContext('2d');
-            historyChart = new Chart(historyCtx, {
-                type: 'bar',
-                data: {
-                    labels: [], // Will be filled dynamically
-                    datasets: [{
-                        label: 'Daily Usage (L)',
-                        data: [],
-                        backgroundColor: 'rgba(33, 150, 243, 0.7)', // primary-500
-                        borderColor: 'rgba(33, 150, 243, 1)',
-                        borderWidth: 1,
-                        borderRadius: 4,
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            backgroundColor: 'rgba(30, 41, 59, 0.9)', // cardbg
-                            titleColor: '#f1f5f9',
-                            bodyColor: '#cbd5e1',
-                            borderColor: '#334155',
-                            borderWidth: 1,
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            grid: { color: 'rgba(148, 163, 184, 0.1)' },
-                            ticks: { color: '#94a3b8' }
-                        },
-                        x: {
-                            grid: { display: false },
-                            ticks: { color: '#94a3b8' }
-                        }
-                    }
-                }
-            });
-
-            const expenditureCtx = document.getElementById('expenditureChart').getContext('2d');
-            expenditureChart = new Chart(expenditureCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Daily', 'Weekly', 'Monthly', 'Yearly'],
-                    datasets: [{
-                        data: [0, 0, 0, 0],
-                        backgroundColor: [
-                            'rgba(33, 150, 243, 0.8)', // primary-500
-                            'rgba(76, 175, 80, 0.8)',  // secondary-500
-                            'rgba(255, 193, 7, 0.8)',  // amber-500
-                            'rgba(156, 39, 176, 0.8)', // purple-500
-                        ],
-                        borderColor: [
-                            'rgba(33, 150, 243, 1)',
-                            'rgba(76, 175, 80, 1)',
-                            'rgba(255, 193, 7, 1)',
-                            'rgba(156, 39, 176, 1)',
-                        ],
-                        borderWidth: 1,
-                        hoverOffset: 10
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: {
-                                color: '#cbd5e1',
-                                padding: 15,
-                                font: { size: 12 }
-                            }
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return `${context.label}: ₹${context.raw.toFixed(2)}`;
-                                }
-                            },
-                            backgroundColor: 'rgba(30, 41, 59, 0.9)',
-                            titleColor: '#f1f5f9',
-                            bodyColor: '#cbd5e1',
-                            borderColor: '#334155',
-                            borderWidth: 1,
-                        }
-                    },
-                    cutout: '60%' // For a doughnut effect
-                }
-            });
-        }
-
-        // --- UI UPDATE LOGIC ---
-        function updateUI(data) {
-            if (!data) return;
-
-            // Update water level visualization
-            const waterLevel = document.getElementById('water-level');
-            const percentage = data.water_percentage;
-            if (percentage !== undefined) {
-                const tankOutline = document.querySelector('.tank-outline');
-                const tankHeight = tankOutline.clientHeight;
-                const waterHeight = (percentage / 100) * tankHeight;
-                waterLevel.style.height = waterHeight + 'px';
-                document.getElementById('water-percentage').textContent = Math.round(percentage) + '%';
-            }
-
-            // Update water depth
-            const waterHeight = data.water_depth_cm;
-            if (waterHeight !== undefined && !isNaN(waterHeight)) {
-                document.getElementById('current-depth').textContent = waterHeight.toFixed(1) + ' cm';
-            } else {
-                document.getElementById('current-depth').textContent = '-- cm';
-            }
-
-            // Update system status
-            const statusIndicator = document.getElementById('system-status');
-            const statusText = document.getElementById('status-text');
-            if (data.emergency_active !== undefined && data.emergency_active) {
-                statusIndicator.className = 'status-dot status-emergency';
-                statusText.textContent = 'EMERGENCY';
-                document.getElementById('warning-overlay').classList.add('active');
-                document.getElementById('warning-message').textContent = "EMERGENCY DETECTED! System is in safe mode. All operations are disabled. Please check the system locally.";
-            } else if (data.water_percentage === undefined) {
-                statusIndicator.className = 'status-dot status-nodata';
-                statusText.textContent = 'NO DATA';
-                document.getElementById('warning-overlay').classList.remove('active');
-            } else {
-                statusIndicator.className = 'status-dot status-normal';
-                statusText.textContent = 'NORMAL';
-                document.getElementById('warning-overlay').classList.remove('active');
-            }
-
-            // Update motor status
-            const motorIcon = document.getElementById('motor-icon');
-            const motorText = document.getElementById('motor-text');
-            const motorRunning = data.motor_running;
-            if (motorRunning !== undefined) {
-                if (motorRunning) {
-                    motorIcon.className = 'fas fa-fan motor-icon-on';
-                    motorText.className = 'text-2xl font-bold text-secondary-400'; // text-secondary-400
-                    motorText.textContent = 'MOTOR RUNNING';
-                } else {
-                    motorIcon.className = 'fas fa-fan motor-icon-off';
-                    motorText.className = 'text-2xl font-bold text-slate-500'; // text-slate-500
-                    motorText.textContent = 'MOTOR OFF';
-                }
-            }
-
-            // Update mode text
-            const modeText = document.getElementById('mode-text');
-            if (data.manual_mode !== undefined) {
-                modeText.textContent = data.manual_mode ? 'MANUAL' : 'AUTOMATIC';
-                modeText.className = data.manual_mode ? 'font-bold text-accent-400' : 'font-bold text-primary-400'; // Red for manual, Blue for auto
-            } else {
-                modeText.textContent = '--';
-                modeText.className = '';
-            }
-
-            // Update last update time
-            if (data.last_update) {
-                document.getElementById('last-update').textContent = data.last_update;
-            }
-        }
-
-        // --- DATA FETCHING ---
-        function fetchData() {
-            const url = `https://api.thingspeak.com/channels/${TS_CHANNEL_1_ID}/feeds/last.json?api_key=${TS_CHANNEL_1_READ_KEY}`;
-            fetch(url)
-                .then(response => {
-                    if (!response.ok) throw new Error('Live data fetch failed');
-                    return response.json();
-                })
-                .then(data => {
-                    if (data && data.field1 !== undefined) {
-                        const payload = {
-                            water_percentage: parseFloat(data.field1),
-                            water_depth_cm: parseFloat(data.field2),
-                            motor_running: data.field3 == "1",
-                            manual_mode: data.field4 == "1",
-                            emergency_active: data.field5 == "1",
-                            daily_usage_liters: parseFloat(data.field6),
-                            daily_power_kwh: parseFloat(data.field7),
-                            motor_runtime_hours: parseFloat(data.field8),
-                            last_update: new Date(data.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
-                        };
-                        updateUI(payload);
-                    } else {
-                        console.warn("No valid data received from ThingSpeak Live Channel");
-                        updateUI({});
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching live data:', error);
-                    updateUI({});
-                });
-        }
-
-        function fetchHistoryData() {
-            const url = `https://api.thingspeak.com/channels/${TS_CHANNEL_2_ID}/feeds.json?api_key=${TS_CHANNEL_2_READ_KEY}&results=7`;
-            fetch(url)
-                .then(response => {
-                    if (!response.ok) throw new Error('History data fetch failed');
-                    return response.json();
-                })
-                .then(data => {
-                    const feeds = data.feeds;
-                    if (feeds && feeds.length > 0) {
-                        // Prepare data for chart (reverse for chronological order)
-                        const labels = [];
-                        const usageData = [];
-                        feeds.reverse().forEach(feed => {
-                            // Use the date from the feed's created_at field
-                            const date = new Date(feed.created_at);
-                            labels.push(date.toLocaleDateString([], { weekday: 'short', day: 'numeric' })); // e.g., "Mon 10"
-                            usageData.push(parseFloat(feed.field2) || 0); // daily_water_usage_liters
-                        });
-
-                        // Update History Chart
-                        historyChart.data.labels = labels;
-                        historyChart.data.datasets[0].data = usageData;
-                        historyChart.update();
-                        
-                        // Hide skeleton loader
-                        document.getElementById('historyChartSkeleton').style.display = 'none';
-
-                        // --- Calculate Expenditure for Chart ---
-                        let totalWeekly = 0;
-                        let totalWeeklyPower = 0;
-                        feeds.forEach(feed => {
-                            const usage = parseFloat(feed.field2); // daily_water_usage_liters
-                            const power = parseFloat(feed.field3); // daily_power_kwh
-                            if (!isNaN(usage)) totalWeekly += usage;
-                            if (!isNaN(power)) totalWeeklyPower += power;
-                        });
-                        const dailyAvgPower = totalWeeklyPower / feeds.length; // Simple average daily power for daily estimate
-                        const dailyExpenditure = dailyAvgPower * POWER_RATE_RUPEES_PER_KWH;
-                        const weeklyExpenditure = totalWeeklyPower * POWER_RATE_RUPEES_PER_KWH;
-                        const monthlyExpenditure = weeklyExpenditure * 4.33; // Approx weeks in a month
-                        const yearlyExpenditure = monthlyExpenditure * 12;
-
-                        // Update Expenditure Chart
-                        expenditureChart.data.datasets[0].data = [
-                            dailyExpenditure,
-                            weeklyExpenditure,
-                            monthlyExpenditure,
-                            yearlyExpenditure
-                        ];
-                        expenditureChart.update();
-                        
-                        // Hide skeleton loader
-                        document.getElementById('expenditureChartSkeleton').style.display = 'none';
-
-                    } else {
-                        console.warn("No history data available.");
-                        // Optionally, update charts with empty state or message
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching history data:', error);
-                    // Optionally, update charts with error state
-                });
-        }
-
-        // --- INITIALIZATION ---
-        document.addEventListener('DOMContentLoaded', () => {
-            initCharts(); // Initialize charts first
-            fetchData(); // Fetch initial data
-            fetchHistoryData(); // Fetch initial history
-
-            // Set up intervals
-            setInterval(fetchData, 15000); // Update live data every 15 seconds
-            setInterval(fetchHistoryData, 300000); // Update history every 5 minutes
-        });
-
-        // --- WARNING OVERLAY TRANSITION ---
-        const warningOverlay = document.getElementById('warning-overlay');
-        warningOverlay.addEventListener('transitionend', (e) => {
-            if (e.propertyName === 'opacity' && !warningOverlay.classList.contains('active')) {
-                warningOverlay.classList.remove('pointer-events-auto');
-            }
-        });
-        // Add class for full activation
-        Object.defineProperty(warningOverlay, 'active', {
-            set: function (isActive) {
-                if (isActive) {
-                    this.classList.add('active', 'pointer-events-auto');
-                    this.classList.remove('opacity-0');
-                } else {
-                    this.classList.add('opacity-0');
-                    // 'pointer-events-auto' will be removed by transitionend listener
-                }
-            }
-        });
-    </script>
+  <script>
+    // Defer loading chart.js to when needed; but if CDN is fast, this warms cache
+    (function preloadChart(){ const s=document.createElement('script'); s.src='https://cdn.jsdelivr.net/npm/chart.js'; s.defer=true; document.head.appendChild(s); })();
+  </script>
+  <script type="module" src="assets/js/app.js"></script>
 </body>
 </html>
