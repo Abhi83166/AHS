@@ -125,8 +125,32 @@ function updateStatusClass(el, value) {
   }
 }
 
+// Mobile menu toggle
+function initMobileMenu() {
+  const menuToggle = document.getElementById('menuToggle');
+  const sidebar = document.querySelector('.sidebar');
+  
+  if (menuToggle && sidebar) {
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      sidebar.classList.toggle('open');
+    });
+    
+    // Close menu when clicking outside on mobile
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth <= 1200) {
+        if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+          menuToggle.classList.remove('active');
+          sidebar.classList.remove('open');
+        }
+      }
+    });
+  }
+}
+
 // Initialize
 (async function init() {
   await initDataLayer();
   render();
+  initMobileMenu();
 })();
